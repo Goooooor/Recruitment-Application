@@ -69,7 +69,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for local testing
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(HttpMethod.GET, "/apply").authenticated()
-                        .requestMatchers("/login", "/user/register").permitAll()
+                        .requestMatchers("/login", "/register").permitAll()
                         .requestMatchers("/recruiter").hasAuthority("recruiter")// Public endpoints
                         .requestMatchers(HttpMethod.GET, "/apply/submit-all", "/apply/cancel").denyAll()
                         .anyRequest().authenticated()
