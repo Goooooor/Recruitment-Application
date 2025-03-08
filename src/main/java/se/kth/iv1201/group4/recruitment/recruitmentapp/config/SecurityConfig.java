@@ -21,17 +21,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final PersonUserDetailsService personUserDetailsService;
+    //private final PersonUserDetailsService personUserDetailsService;
 
     /**
      * Constructs the security configuration with the required user details service.
      *
      * @param personUserDetailsService The service responsible for retrieving user details.
      */
-    @Autowired
+   /* @Autowired
     public SecurityConfig(PersonUserDetailsService personUserDetailsService) {
         this.personUserDetailsService = personUserDetailsService;
-    }
+    }*/
 
     /**
      * Bean for encoding passwords using BCrypt hashing.
@@ -48,13 +48,13 @@ public class SecurityConfig {
      *
      * @return The authentication provider.
      */
-    @Bean
+    /*@Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(personUserDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
-    }
+    }*/
 
     /**
      * Configures security rules, login/logout behavior, and access control.
@@ -67,16 +67,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for local testing
-                .authorizeHttpRequests(auth -> auth
+                .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(HttpMethod.GET, "/apply").authenticated()
-                        .requestMatchers("/login", "/user/register").permitAll() // Public endpoints
+                        .requestMatchers("/login", "/user/register").permitAll()
+                        .requestMatchers("/recruiter").hasAuthority("recruiter")// Public endpoints
                         .requestMatchers(HttpMethod.GET, "/apply/submit-all", "/apply/cancel").denyAll()
                         .anyRequest().authenticated()
                 )
-                .exceptionHandling(eh -> eh
+                /*.exceptionHandling(eh -> eh
                         .accessDeniedHandler(new CustomAccessDeniedHandler())
-                )
-                .formLogin(form -> form
+                )*/
+                .formLogin((form) -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/dashboard", true)
                         .permitAll()
@@ -90,7 +91,8 @@ public class SecurityConfig {
                         .deleteCookies("JSESSIONID")
                         .permitAll()
                 )
-                .authenticationProvider(authenticationProvider());
+                //.authenticationProvider(authenticationProvider());
+        ;
 
         return http.build();
     }
@@ -102,11 +104,11 @@ public class SecurityConfig {
      * @return The authentication manager.
      * @throws Exception If an error occurs during configuration.
      */
-    @Bean
+   /* @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authBuilder =
                 http.getSharedObject(AuthenticationManagerBuilder.class);
         authBuilder.authenticationProvider(authenticationProvider());
         return authBuilder.build();
-    }
+    }*/
 }

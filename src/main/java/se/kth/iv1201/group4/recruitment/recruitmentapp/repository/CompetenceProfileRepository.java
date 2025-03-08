@@ -34,12 +34,14 @@ public interface CompetenceProfileRepository extends JpaRepository<CompetencePro
 
     /**
      * Retrieves a list of tuples containing distinct person IDs and their associated status from the {@link CompetenceProfile} entity.
+     *
      * @return A list of tuples, each containing a person ID and their status
      */
 
-    @Query("SELECT DISTINCT cp.personId, cp.status FROM CompetenceProfile cp ORDER BY cp.personId ASC")
+    @Query("SELECT DISTINCT cp.person.id, cp.status FROM CompetenceProfile cp ORDER BY cp.person.id ASC")
     //@Query("SELECT DISTINCT new src/main/java/se/kth/iv1201/group4/recruitment/recruitmentapp/presentation/dto/PersonStatusDTO(cp.personId, cp.status) FROM CompetenceProfile cp")
     List<Tuple> findPersonIdsAndStatuses();
+
     /**
      * Retrieves all competence profiles associated with a specific person.
      *
@@ -56,7 +58,7 @@ public interface CompetenceProfileRepository extends JpaRepository<CompetencePro
      */
     List<CompetenceProfile> findByPerson(Person person);
 
-
+}
 
 // JpaRepository<User, Integer> means this repository is managing User entities
 // and the data type for the primary key is Integer

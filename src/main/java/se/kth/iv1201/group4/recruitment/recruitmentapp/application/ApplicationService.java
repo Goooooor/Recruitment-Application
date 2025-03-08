@@ -111,7 +111,7 @@ public class ApplicationService {
                 .orElseThrow(() -> new RuntimeException("Competence not found with ID: " + competenceId));
 
         // Create and save a competence profile
-        CompetenceProfile cp = new CompetenceProfile(applicant, competence, yearsOfExperience);
+        CompetenceProfile cp = new CompetenceProfile(applicant, competence, yearsOfExperience, "unhandled");
         competenceProfileRepository.save(cp);
 
         // Create and save an availability entry

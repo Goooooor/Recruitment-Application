@@ -28,10 +28,7 @@ public class LoginController {
         this.personService = personService;
     }
 
-    /*@PostMapping("/login")
-    public ResponseEntity<RegisterDTO> login(@RequestBody @Valid RegisterDTO registerDTO){
-        return null;
-    }*/
+
     @GetMapping("")
     public String loginPage(Model model) {
         //generatePassword();
@@ -40,41 +37,7 @@ public class LoginController {
     }
 
 
-    /*public  void generatePassword() {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String rawPassword = "mySecretPassword";
-        String encodedPassword = encoder.encode(rawPassword);
 
-        System.out.println("Encoded Password: " + encodedPassword);
-    }*/
-
-
-
-    /*@PostMapping("")
-    //public String login(@RequestParam String username, @RequestParam String password) {
-    public String login(@ModelAttribute("LoginDTO") LoginDTO dto, Model model) {
-        //boolean isAuthenticated = userService.authenticate(username, password);
-
-        //System.out.println(username);
-        //System.out.println(password);
-
-        if(personService.validateUser(dto)){
-            System.out.println(dto.getUsername());
-            System.out.println(dto.getPassword());
-            System.out.println(model);
-            model.addAttribute("username", dto.getUsername());
-            return "redirect:/person/dashboard";
-            //return "/dashboard";
-        }
-
-
-        System.out.println(dto.getUsername());
-        System.out.println(dto.getPassword());
-        System.out.println(model);
-        model.addAttribute("loginError", true);
-        return "/login2";
-
-    }*/
 
 
 

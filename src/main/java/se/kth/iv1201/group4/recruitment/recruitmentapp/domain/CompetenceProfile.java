@@ -20,6 +20,8 @@ public class CompetenceProfile {
     @Column(name = "competence_profile_id", nullable = false, updatable = false)
     private Integer competenceProfileId;
 
+
+
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
@@ -40,10 +42,11 @@ public class CompetenceProfile {
     }
 
 
-    public CompetenceProfile(Person person, Competence competence, Double yearsOfExperience) {
+    public CompetenceProfile(Person person, Competence competence, Double yearsOfExperience, String status) {
         this.person = person;
         this.competence = competence;
         this.yearsOfExperience = yearsOfExperience;
+        this.status = status;
 
 
     }

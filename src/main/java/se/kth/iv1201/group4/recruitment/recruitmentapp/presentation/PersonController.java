@@ -16,7 +16,7 @@ import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.Register
 
 //@RestController
 @Controller
-@RequestMapping("/person")
+//@RequestMapping("")
 @SessionAttributes("username")
 public class PersonController {
 
@@ -45,13 +45,6 @@ public class PersonController {
 
 
 
-
-    //@GetMapping("/register")
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody @Valid RegisterDTO dto) {
-        personService.registerUser(dto);
-        return ResponseEntity.ok("User regged very nice i like how much.");
-    }
 
 
 

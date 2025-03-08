@@ -30,6 +30,7 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Inte
      */
 
     List<Availability> findByPersonId(Integer personId);
+}
 
 // JpaRepository<User, Integer> means this repository is managing User entities
 // and the data type for the primary key is Integer
