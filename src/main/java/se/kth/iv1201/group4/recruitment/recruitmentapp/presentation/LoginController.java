@@ -17,17 +17,9 @@ import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.Register
 
 
 //@RestController
-/**
- * Controller class handling login-related requests.
- */
 @Controller
 @RequestMapping("/login")
-//@SessionAttributes("username")
-/**
- * Constructor for LoginController.
- *
- * @param personService Service for handling person-related operations.
- */
+@SessionAttributes("username")
 public class LoginController {
 
     private final PersonService personService;
@@ -36,12 +28,10 @@ public class LoginController {
         this.personService = personService;
     }
 
-    /**
-     * Handles GET requests to the login page.
-     *
-     * @param model Model to hold attributes for the view.
-     * @return The name of the login view.
-     */
+    /*@PostMapping("/login")
+    public ResponseEntity<RegisterDTO> login(@RequestBody @Valid RegisterDTO registerDTO){
+        return null;
+    }*/
     @GetMapping("")
     public String loginPage(Model model) {
         //generatePassword();
@@ -60,7 +50,31 @@ public class LoginController {
 
 
 
+    /*@PostMapping("")
+    //public String login(@RequestParam String username, @RequestParam String password) {
+    public String login(@ModelAttribute("LoginDTO") LoginDTO dto, Model model) {
+        //boolean isAuthenticated = userService.authenticate(username, password);
 
+        //System.out.println(username);
+        //System.out.println(password);
+
+        if(personService.validateUser(dto)){
+            System.out.println(dto.getUsername());
+            System.out.println(dto.getPassword());
+            System.out.println(model);
+            model.addAttribute("username", dto.getUsername());
+            return "redirect:/person/dashboard";
+            //return "/dashboard";
+        }
+
+
+        System.out.println(dto.getUsername());
+        System.out.println(dto.getPassword());
+        System.out.println(model);
+        model.addAttribute("loginError", true);
+        return "/login2";
+
+    }*/
 
 
 
@@ -68,4 +82,3 @@ public class LoginController {
 
 
 }
-
