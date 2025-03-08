@@ -2,6 +2,11 @@ package se.kth.iv1201.group4.recruitment.recruitmentapp.domain;
 
 import jakarta.persistence.*;
 
+/**
+ * Displays a person different competences.
+ * This class is mapped to the "competence" table in the database.
+ */
+
 @Entity
 @Table(name = "competence")
 public class Competence {

@@ -3,6 +3,11 @@ package se.kth.iv1201.group4.recruitment.recruitmentapp.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * Represents the availability of a person for a specific period. A person can have multiple availabilities.
+ * This class is mapped to the "availability" table in the database.
+ */
+
 @Entity
 @Table(name = "availability")
 // This allows us to skip implementing getters and setters
