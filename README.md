@@ -16,3 +16,19 @@ This is a recruitment management system designed for an amusement park. It allow
 - **Database:** PostgreSQL
 - **Build Tool:** Maven
 
+## Cloud Platform
+
+
+## Installation
+1. Clone repository
+```bash
+git clone https://github.com/Goooooor/Recruitment-Application.git
+```
+2. The database script for creating the database can be found in src/main/script/db/new-database.sql
+3.Configure the database in application.properties
+```bash
+spring.datasource.url=jdbc:postgresql://localhost:5432/your_database_name
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+```
