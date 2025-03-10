@@ -45,6 +45,7 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
      * @return the user with the given username.
      */
     Person findByUsername(String username);
+
     @Query("SELECT p FROM Person p WHERE p.id IN (SELECT cp.person.id FROM CompetenceProfile cp)")
     List<Person> findPersonsWithCompetenceProfiles();
 

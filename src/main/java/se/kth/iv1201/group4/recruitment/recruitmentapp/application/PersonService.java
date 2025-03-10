@@ -89,4 +89,13 @@ public class PersonService implements UserDetailsService {
                 authorities
         );
     }
+
+    public Integer getRoleIdByUsername(String username) {
+        Person person = personRepository.findByUsername(username);
+        if (person != null && person.getRole() != null) {
+            return person.getRole().getId();
+        }
+        return null; // Handle null case properly
+    }
+
 }

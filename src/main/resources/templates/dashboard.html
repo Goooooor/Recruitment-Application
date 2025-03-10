@@ -18,9 +18,14 @@
     </form>
 </div>
 <div class="col-12 text-center">
-    <a href="/recruiter" class="btn btn-secondary">Recruiter</a>
-    <a href="/apply" class="btn btn-secondary">Apply for position</a>
+
+    <a href="/recruiter" class="btn btn-secondary" th:if="${roleId == 1}">Recruiter</a>
+
+
+    <a href="/apply" class="btn btn-secondary"  th:if="${roleId == 2} ">Apply for position</a>
 </div>
+
+
 
 
 

@@ -46,6 +46,8 @@ public class RegisterService {
      */
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void registerUser(RegisterDTO dto) {
+        System.out.println("Attempting to register user: " + dto.getUsername());
+
         if (personRepository.existsByEmail(dto.getEmail())) {
             throw new RuntimeException("Email is already in use.");
         }
@@ -70,8 +72,10 @@ public class RegisterService {
 
         person.setRole(applicantRole);
 
-        System.out.println("service " + person.getUsername());
+        System.out.println("Saving user to database: " + person.getUsername());
 
         personRepository.save(person);
+        System.out.println("User successfully saved!");
     }
+
 }

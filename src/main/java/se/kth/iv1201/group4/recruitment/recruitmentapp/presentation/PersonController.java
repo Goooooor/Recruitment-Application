@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.kth.iv1201.group4.recruitment.recruitmentapp.application.PersonService;
 
+import se.kth.iv1201.group4.recruitment.recruitmentapp.domain.Person;
 import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.LoginDTO;
 import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.RegisterDTO;
 
@@ -33,15 +34,19 @@ public class PersonController {
 
 
     @GetMapping("/dashboard")
-    public String dashboardPage(Model model/*, @SessionAttribute("username") String username*/){
+    public String dashboardPage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();  // Get current logged-in username
-        System.out.println("username:" + username);
+        String username = auth.getName();
 
+        Integer roleId = personService.getRoleIdByUsername(username);
 
-        model.addAttribute("username", username);  // Add username to the model
-        return "/dashboard";
+        model.addAttribute("username", username);
+        model.addAttribute("roleId", roleId);  // Send role ID to Thymeleaf
+
+        return "dashboard";
     }
+
+
 
 
 

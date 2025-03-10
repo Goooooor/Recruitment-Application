@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <title>Application Form</title>
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+  />
 </head>
-<body>
-<h1>Application Form</h1>
+<body class="container mt-5">
+<h1 class="text-center mb-4">Application Form</h1>
 
-<form th:action="@{/apply/submit-all}" method="post">
-  <div>
-    <label>Competence:</label>
-    <select name="competenceId">
+<form th:action="@{/apply/submit-all}" method="post" class="card p-4 shadow-lg">
+  <div class="mb-3">
+    <label class="form-label">Competence:</label>
+    <!--List the compentences in menu-->
+    <select name="competenceId" class="form-select">
       <option th:each="comp : ${competences}"
               th:value="${comp.id}"
               th:text="${comp.name}">
@@ -18,23 +23,35 @@
       </option>
     </select>
   </div>
-  <div>
-    <label>Years of Experience:</label>
-    <input type="number" step="0.1" name="yearsOfExperience" />
+  <div class="mb-3">
+    <label class="form-label">Years of Experience:</label>
+    <!-- Min 0 and step 1 -->
+    <input type="number" step="1" name="yearsOfExperience" class="form-control" min="0" />
   </div>
-  <div>
-    <label>Availability From:</label>
-    <input type="date" name="fromDate" />
-    <label>To:</label>
-    <input type="date" name="toDate" />
+  <div class="mb-3">
+    <label class="form-label">Availability From:</label>
+    <input type="date" name="fromDate" class="form-control" id="fromDate" />
+
+    <label class="form-label mt-2">To:</label>
+    <input type="date" name="toDate" class="form-control" id="toDate" />
   </div>
-  <button type="submit">Submit Application</button>
+
+  <script>
+    const today = new Date().toISOString().split('T')[0];
+    <!-- Start from today as min -->
+    document.getElementById("fromDate").setAttribute("min", today);
+    document.getElementById("fromDate").addEventListener("change", function() {
+      document.getElementById("toDate").setAttribute("min", this.value);
+    });
+  </script>
+
+  <div class="d-flex justify-content-between">
+    <!-- The POST request is made with the details in the form such as competenceId, yoe, date -->
+    <button type="submit" class="btn btn-primary">Submit Application</button>
+    <a href="/dashboard" class="btn btn-danger">Cancel</a>
+  </div>
 </form>
 
-
-<form th:action="@{/apply/cancel}" method="post" style="display:inline">
-  <button type="submit">Cancel</button>
-</form>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

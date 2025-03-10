@@ -12,7 +12,7 @@ import se.kth.iv1201.group4.recruitment.recruitmentapp.domain.Availability;
 import se.kth.iv1201.group4.recruitment.recruitmentapp.domain.CompetenceProfile;
 import se.kth.iv1201.group4.recruitment.recruitmentapp.domain.Person;
 import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.LoginDTO;
-import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.PersonStatusDTO;
+//import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.PersonStatusDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -50,7 +50,6 @@ public class RecruiterController {
      * @param model The model to hold attributes for the view
      * @return The name of the view template to render
      */
-
     @GetMapping("")
     public String recruiterPage(Model model/*, @SessionAttribute("username") String username*/) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -62,7 +61,7 @@ public class RecruiterController {
         model.addAttribute("persons", persons);
         model.addAttribute("personStatusMap", personStatusMap);
 
-        return "/recruiter";
+        return "recruiter";
     }
 
     /**
@@ -80,6 +79,6 @@ public class RecruiterController {
 
         model.addAttribute("personStatusMap", personStatusMap);
         model.addAttribute("person", person);
-        return "/profile";
+        return "profile";
     }
 }
