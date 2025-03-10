@@ -21,10 +21,16 @@ public class Competence {
 
     public Competence() {
     }
-
+    /**
+     * Constructor for creating Competence
+     */
     public Competence(String name) {
         this.name = name;
     }
+
+    /**
+     * Getters and setters
+     */
 
     public Integer getId() {
         return id;

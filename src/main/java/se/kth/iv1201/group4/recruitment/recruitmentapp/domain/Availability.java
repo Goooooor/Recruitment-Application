@@ -32,7 +32,7 @@ public class Availability {
     private String toDate;
 
     /**
-     * Convenience constructor
+     * Constructor for creating availability
      */
     public Availability(Person person, String fromDate, String toDate) {
         this.person = person;

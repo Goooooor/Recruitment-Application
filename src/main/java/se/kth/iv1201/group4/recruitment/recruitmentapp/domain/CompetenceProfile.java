@@ -41,7 +41,9 @@ public class CompetenceProfile {
 
     }
 
-
+    /**
+     * Constructor for creating CompetenceProfile
+     */
     public CompetenceProfile(Person person, Competence competence, Double yearsOfExperience, String status) {
         this.person = person;
         this.competence = competence;

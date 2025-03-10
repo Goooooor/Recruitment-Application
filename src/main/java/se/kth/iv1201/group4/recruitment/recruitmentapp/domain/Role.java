@@ -30,6 +30,10 @@ public class Role {
     @Column(name = "name")
     private String name;
 
+     /**
+      * Getters and setters
+      */
+
      public void setId(Integer id) {
          this.id = id;
      }
