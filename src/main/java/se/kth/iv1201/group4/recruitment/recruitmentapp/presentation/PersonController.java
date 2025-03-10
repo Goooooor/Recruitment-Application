@@ -15,23 +15,32 @@ import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.Register
 
 
 //@RestController
+/**
+ * Controller class for handling person-related requests.
+ */
 @Controller
 //@RequestMapping("")
 @SessionAttributes("username")
 public class PersonController {
 
     private final PersonService personService;
-
+    /**
+     * Constructor for PersonController.
+     *
+     * @param personService Service for handling person-related operations.
+     */
     public PersonController(PersonService personService ){
         this.personService = personService;
     }
 
-    /*@PostMapping("/login")
-    public ResponseEntity<RegisterDTO> login(@RequestBody @Valid RegisterDTO registerDTO){
-        return null;
-    }*/
 
 
+    /**
+     * Handles GET requests to the dashboard page.
+     *
+     * @param model Model to hold attributes for the view.
+     * @return The name of the dashboard view.
+     */
     @GetMapping("/dashboard")
     public String dashboardPage(Model model/*, @SessionAttribute("username") String username*/){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -17,9 +17,17 @@ import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.Register
 
 
 //@RestController
+/**
+ * Controller class handling login-related requests.
+ */
 @Controller
 @RequestMapping("/login")
 @SessionAttributes("username")
+/**
+ * Constructor for LoginController.
+ *
+ * @param personService Service for handling person-related operations.
+ */
 public class LoginController {
 
     private final PersonService personService;
@@ -28,7 +36,12 @@ public class LoginController {
         this.personService = personService;
     }
 
-
+    /**
+     * Handles GET requests to the login page.
+     *
+     * @param model Model to hold attributes for the view.
+     * @return The name of the login view.
+     */
     @GetMapping("")
     public String loginPage(Model model) {
         //generatePassword();
