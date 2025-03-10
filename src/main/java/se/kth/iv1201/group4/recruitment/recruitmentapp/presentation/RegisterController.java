@@ -9,9 +9,10 @@ import jakarta.validation.Valid;
 import se.kth.iv1201.group4.recruitment.recruitmentapp.application.RegisterService;
 import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.RegisterDTO;
 
-
+/**
+ * The class used when starting the registration of users.
+ */
 @Controller
-//@RequestMapping("/user")
 public class RegisterController {
 
     private final RegisterService registerService;
@@ -59,7 +60,7 @@ public class RegisterController {
             return "register"; // Stay on the same page and display error
         }
 
-        return "redirect:/user/register-success";
+        return "redirect:/register-success";
     }
 
     /**

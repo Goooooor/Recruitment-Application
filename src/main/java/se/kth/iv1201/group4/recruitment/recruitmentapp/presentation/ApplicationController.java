@@ -19,7 +19,7 @@ import java.util.Optional;
  * Manages form display, submission, and cancellation.
  */
 @Controller
-@RequestMapping("/apply")
+@RequestMapping("/apply") // Base mapping
 public class ApplicationController {
 
     private final ApplicationService applicationService;
@@ -44,6 +44,7 @@ public class ApplicationController {
     /**
      * Handles GET requests to /apply.
      * Displays the application form if the user has no submitted application.
+     * Fills the html file application-form.
      * If an application has already been submitted, redirects to a confirmation page.
      *
      * @param model     Spring Model to pass data to the view.
@@ -53,7 +54,6 @@ public class ApplicationController {
     @GetMapping
     public String showApplicationForm(Model model, Principal principal) {
         String username = principal.getName();
-        Person applicant = personRepository.findByUsername(username);
 
         // Check if user already has an application (draft or submitted)
         Optional<Application> existing = applicationService.findApplication(username);
@@ -67,7 +67,8 @@ public class ApplicationController {
         }
 
         // No application or a draft exists – show the application form
-        model.addAttribute("applicant", applicant);
+
+        // Get the competences (lotteries...), and add to the model to show with Thymeleaf
         List<Competence> competences = competenceRepository.findAll();
         model.addAttribute("competences", competences);
 
@@ -111,6 +112,6 @@ public class ApplicationController {
      */
     @PostMapping("/cancel")
     public String cancelApplication() {
-        return "redirect:/home";
+        return "redirect:/dashboard";
     }
 }

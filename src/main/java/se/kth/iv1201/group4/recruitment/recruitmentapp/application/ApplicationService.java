@@ -93,6 +93,8 @@ public class ApplicationService {
      * @throws RuntimeException If the specified competence is not found.
      */
     @Transactional(rollbackFor = Exception.class)
+    // Rollback if we get an exception, all db changes will be rolled back
+    // rollbackFor = Exception.class is for checked exceptions also not only unchecked like runtime or error
     public void submitAll(String username, Integer competenceId, Double yearsOfExperience,
                           String fromDate, String toDate) {
         // Retrieve or create a draft application
