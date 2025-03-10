@@ -10,10 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import se.kth.iv1201.group4.recruitment.recruitmentapp.domain.CompetenceProfile;
 import se.kth.iv1201.group4.recruitment.recruitmentapp.domain.Person;
-import se.kth.iv1201.group4.recruitment.recruitmentapp.domain.*;
-import se.kth.iv1201.group4.recruitment.recruitmentapp.presentation.dto.PersonStatusDTO;
-
-import java.util.List;
 
 import java.util.List;
 
